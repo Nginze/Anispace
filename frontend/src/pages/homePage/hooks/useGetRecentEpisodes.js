@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const useGetRecentEpisodes = () => {
   const [recentEpisodesList, setRecentEpisodes] = useState([]);

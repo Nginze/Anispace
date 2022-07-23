@@ -6,8 +6,8 @@ const AnimePreviewCard = ({
     title
 }) => {
   return (
-    <div>
-        <div>
+    <div className = 'w-36 cursor-pointer '>
+        <div className='w-full'>
             <img src = {imgUrl} />
             <div>
                 <span>{title}</span>
