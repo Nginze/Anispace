@@ -1,9 +1,14 @@
+import AnimePreviewCard from 'pages/homePage/components/AnimePreviewCard';
 import './App.css';
+import useGetRecentEpisodes from './pages/homePage/hooks/useGetRecentEpisodes';
 
 function App() {
+  const {recentEpisodesList}  = useGetRecentEpisodes();
   return (
     <div className="App">
-     <h1 className = 'text-slate-400'>Anime</h1> 
+      {
+        recentEpisodesList.map(episode => (<AnimePreviewCard key={episode.animeId} imgUrl={episode.animeImg} title = {episode.animeTitle} />))
+      }
     </div>
   );
 }
