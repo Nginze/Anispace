@@ -1,22 +1,13 @@
-import useGetVideoSrc from "hooks/useGetVideoSrc";
-import { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 
 const AnimePreviewCard = ({
   imgUrl,
   rating,
   title,
   episodeId,
-  episodeImg,
-  setCurrenPoster,
-  setCurrentEpisode,
 }) => {
-  const [isClicked, setIsClicked] = useState(false);
-  const { videoSrcList } = useGetVideoSrc(episodeId, isClicked, setIsClicked);
-  videoSrcList && setCurrentEpisode(videoSrcList?.sources[0]?.file);
-  const handleCardClick = () => {
-    setIsClicked(true);
-    setCurrenPoster(episodeId);
-  };
+  const navigate = useNavigate()
+  const handleCardClick = () => {navigate(`/watch/${episodeId}`)};
   return (
     <div onClick={handleCardClick} className="cursor-pointer ">
       <div className="w-full ">
