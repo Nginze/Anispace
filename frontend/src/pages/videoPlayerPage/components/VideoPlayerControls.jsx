@@ -1,51 +1,111 @@
 import {React, useState} from "react";
 import {
+  Controls,
+  PlaybackControl,
+  Control,
+  Scrim,
+  ScrubberControl,
+  ControlSpacer,
+  VolumeControl,
+  SettingsControl,
   DefaultUi,
-  Settings,
-  MenuItem,
-  Submenu,
-  MenuRadio,
-  MenuRadioGroup,
-} from "@vime/react";
+  FullscreenControl,
+  CurrentTime,
+  EndTime,
+  ControlGroup,
+  TimeProgress,
+  PipControl,
+  CaptionControl,
+  Tooltip,
+} from '@vime/react';
+
+
 
 const VideoPlayerControls = () => {
-  const [value, setValue] = useState("1");
-
-  const onMenuItem1Click = () => {
-    console.log("Clicked menu item 1");
-  };
-
-  const onMenuItem2Click = () => {
-    console.log("Clicked menu item 2");
-  };
-
-  const onCheck = event => {
-    const radio = event.target;
-    setValue(radio.value);
-  };
-
+  const isMobile = false;
   return (
-    <DefaultUi noSettings>
-      <Settings>
-        <MenuItem
-          label="Menu Item 1"
-          badge="BADGE"
-          onClick={onMenuItem1Click}
-        />
+    <DefaultUi noControls>
+      {/* Center Controls for play/pause and changing episode */}
+      <Controls
+        align="center"
+        pin="center"
+        justify="space-evenly"
+        style={{
+          '--vm-controls-spacing': '80px',
+        }}
+      >
+        <Control
+          // onClick={() => dispatch(decrementEpisode())}
+          keys="p"
+          label="Previous Episode"
+        >
+          {/* <ChevronDoubleLeftIcon className="w-9 text-white" /> */}
+          <Tooltip>previous(p)</Tooltip>
+        </Control>
 
-        <MenuItem label="Menu Item 2" hint="Hint" onClick={onMenuItem2Click} />
+        <PlaybackControl hideTooltip keys="k/ " />
 
-        <Submenu label="Submenu 1" hint={value}>
-          <MenuRadioGroup value={value} onVmCheck={onCheck}>
-            <MenuRadio label="Option 1" value="1" />
-            <MenuRadio label="Option 2" value="2" />
-            <MenuRadio label="Option 3" value="3" />
-          </MenuRadioGroup>
-        </Submenu>
+        <Control
+          // onClick={() => dispatch(incrementEpisode())}
+          keys="n"
+          label="Next Episode"
+        >
+          {/* <ChevronDoubleRightIcon className="w-9 text-white" /> */}
+          <Tooltip className="text-xs">next(n)</Tooltip>
+        </Control>
+      </Controls>
 
-        <Submenu label="Submenu 2">Random content in here.</Submenu>
-      </Settings>
-    </DefaultUi>
+      {/* Default Controls */}
+
+      {isMobile && (
+        <Controls pin="topLeft">
+          <ControlSpacer />
+          <VolumeControl />
+          <SettingsControl />
+        </Controls>
+      )}
+
+      <Controls
+        pin="bottomLeft"
+        direction={isMobile ? 'column' : 'column-reverse'}
+      >
+        <ControlGroup space={isMobile ? 'none' : 'top'}>
+          {!isMobile && (
+            <>
+              <PlaybackControl keys="k/ " tooltipDirection="right" />
+              <VolumeControl />
+            </>
+          )}
+
+          {!isMobile ? (
+            <>
+              <TimeProgress />
+              <ControlSpacer />
+            </>
+          ) : (
+            <>
+              <CurrentTime />
+              <ControlSpacer />
+              <EndTime />
+            </>
+          )}
+
+          {!isMobile && (
+            <>
+              <CaptionControl />
+              <PipControl keys="i" />
+              <SettingsControl />
+            </>
+          )}
+
+          <FullscreenControl tooltipDirection="left" />
+        </ControlGroup>
+
+        <ControlGroup>
+          <ScrubberControl />
+        </ControlGroup>
+      </Controls>
+    </DefaultUi> 
   );
 };
 
