@@ -3,19 +3,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import AnimePreviewCard from "./AnimePreviewCard";
 
-const SectionSlider = ({ episodesList }) => {
+const SectionSlider = ({ dataList, headerText, type }) => {
   return (
-    <div className="flex-col text-left w-3/4 m-auto">
-      <span>Header</span>
+    <div className="flex-col text-left w-3/4 m-auto mb-5">
+      <span>{headerText}</span>
       <div className="">
-        <Swiper
-          spaceBetween={10}
-          slidesPerView={6}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={swiper => console.log(swiper)}
-        >
-          {episodesList ? (
-            episodesList.map(episode => (
+        {!dataList && <h1>loading...</h1>}
+        <Swiper spaceBetween={10} slidesPerView={6}>
+          {type == "RECENT" && dataList ? (
+            dataList.map(episode => (
               <SwiperSlide>
                 <AnimePreviewCard
                   key={episode.animeId}
@@ -29,7 +25,33 @@ const SectionSlider = ({ episodesList }) => {
               </SwiperSlide>
             ))
           ) : (
-            <h1>Loading...</h1>
+           null 
+          )}
+          {type == "TRENDING" && dataList ? (
+            dataList.map(anime => (
+              <SwiperSlide>
+                <AnimePreviewCard
+                  key={anime.title.english}
+                  imgUrl={anime.coverImage.large}
+                  title={anime.title.english}
+                />
+              </SwiperSlide>
+            ))
+          ) : (
+           null 
+          )}
+          {type == "FAVOURITE" && dataList ? (
+            dataList.map(anime => (
+              <SwiperSlide>
+                <AnimePreviewCard
+                  key={anime.title.english}
+                  imgUrl={anime.coverImage.large}
+                  title={anime.title.english}
+                />
+              </SwiperSlide>
+            ))
+          ) : (
+           null 
           )}
         </Swiper>
       </div>
