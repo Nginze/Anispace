@@ -17,7 +17,7 @@ const SectionSlider = ({ dataList, headerText, type }) => {
                     imgUrl={episode.animeImg}
                     title={episode.animeTitle}
                     episodeId={episode.episodeId}
-                    episodeImg={episode.animeImg}
+                    episodeNum = {episode.episodeNum}
                   />
                 </SwiperSlide>
               ))
@@ -26,9 +26,9 @@ const SectionSlider = ({ dataList, headerText, type }) => {
             ? dataList.map(anime => (
                 <SwiperSlide>
                   <AnimePreviewCard
-                    key={anime.title.english}
+                    key={anime.title.userPreferred}
                     imgUrl={anime.coverImage.large}
-                    title={anime.title.english}
+                    title={anime.title.userPreferred}
                   />
                 </SwiperSlide>
               ))
@@ -37,9 +37,9 @@ const SectionSlider = ({ dataList, headerText, type }) => {
             ? dataList.map(anime => (
                 <SwiperSlide>
                   <AnimePreviewCard
-                    key={anime.title.english}
+                    key={anime.title.userPreferred}
                     imgUrl={anime.coverImage.large}
-                    title={anime.title.english}
+                    title={anime.title.userPreferred}
                   />
                 </SwiperSlide>
               ))
