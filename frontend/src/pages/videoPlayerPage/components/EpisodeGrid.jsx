@@ -6,11 +6,11 @@ const EpisodeGrid = ({ episodeList }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   return (
-    <div class="w-full flex flex-wrap">
+    <div class="py-4 w-full max-h-40 overflow-y-auto flex flex-wrap  items-start">
       {episodeList?.map(episode => {
         return (
           <div
-            class="w-12 h-8 p-1 cursor-pointer"
+            class="w-12 h-8 p-1 bg-[#201e1f] m-1 text-[#747474] text-sm rounded cursor-pointer"
             onClick={() => {
               navigate(`/watch/${episode.episodeId}`, { replace: true });
               queryClient.invalidateQueries("videoSrcList");

@@ -23,25 +23,25 @@ const Index = () => {
           <div className="w-full h-80">
             <img
               className="w-full h-full object-cover"
-              src="https://gogocdn.net/cover/bonobono-1995.png"
+              src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21-tXMN3Y20PIL9.jpg"
             />
           </div>
-          <div className="text-left px-3 flex flex-col ">
-            <span className="flex flex-col">
-              <span>Type</span>
-              <span>TV Series</span>
+          <div className="text-left p-3 flex flex-col ">
+            <span className="flex flex-col text-sm mb-2">
+              <span className="text-[13px] text-[#666]">Type</span>
+              <span className="font-semibold">TV Series</span>
             </span>
-            <span className="flex flex-col">
-              <span>Studio</span>
-              <span>Shaft</span>
+            <span className="flex flex-col text-sm mb-2">
+              <span className="text-[13px] text-[#666]">Studio</span>
+              <span className="font-semibold">Shaft</span>
             </span>
-            <span className="flex flex-col">
-              <span>Release Date</span>
-              <span>Currently Airing</span>
+            <span className="flex flex-col text-sm mb-2">
+              <span className="text-[13px] text-[#666]">Release Date</span>
+              <span className="font-semibold">Currently Airing</span>
             </span>
-            <span className="flex flex-col">
-              <span>Language</span>
-              <span>Subbed</span>
+            <span className="flex flex-col text-sm mb-2">
+              <span className="text-[13px] text-[#666]">Language</span>
+              <span className="font-semibold">Subbed</span>
             </span>
             <div>
               <button onClick={loadFirstEpisode}>Watch Now</button>
@@ -50,14 +50,14 @@ const Index = () => {
         </div>
         <div className="w-3/4 ml-7 mt-[103px] text-left text-[#bbb] z-30">
           <div className="h-10 w-64 mb-3">
-            <span className="text-3xl  ">Naruto Shippuden</span>
+            <span className="text-3xl  ">One Piece</span>
           </div>
           <div className="flex mb-4">
             <span className="mr-10 cursor-pointer">Action</span>
             <span className="mr-10 cursor-pointer">Adventure</span>
             <span className="mr-10 cursor-pointer">shounen</span>
           </div>
-          <div className="pt-3 ">
+          <div className="pt-3 text-white opacity-50 ">
             In the world of Remnant, humans and Faunus—human-animal
             hybrids—carry on their everyday lives despite the omnipresent threat
             of the monstrous Grimm. Dedicated Huntsmen and Huntresses battle
