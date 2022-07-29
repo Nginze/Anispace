@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/watch/:epId" element={< VideoPlayerPage/>} />
-        <Route path="/anime/:anId" element={<AnimeInfoPage/>}/>
+        <Route path="/anime/" element={<AnimeInfoPage/>}/>
       </Routes>
     </div>
   );

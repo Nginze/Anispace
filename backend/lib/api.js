@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from 'express';
 import cors from 'cors';
 import axios from 'axios';
 
@@ -23,6 +23,7 @@ import {
  TrendingAnimeQuery,
  favouritesAnimeQuery,
  PopularAnimeQuery,
+ searchAnimeQuery,
 } from './gqlQueryStrings.js';
 
 const port = process.env.PORT || 5000;
@@ -369,7 +370,31 @@ app.get('/favourite', async (req, res) => {
   console.log('Error from favourite Anime Route', err);
  }
 });
-
+app.get('/animeMeta', async (req, res) => {
+ let response = {};
+ try {
+  const anilistResponse = await axios({
+   url: baseUrl,
+   method: 'POST',
+   headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+   },
+   data: {
+    query: searchAnimeQuery,
+    variables: {
+     search: req.query.q,
+    },
+   },
+  })
+  const gogoResponse = await scrapeSearch({keyw: encodeURIComponent(req.query.q.trim())})
+  const firstSearchResultId = gogoResponse[0].animeId
+  const episodeList = await scrapeAnimeDetails({id: firstSearchResultId})
+  res.json({epList: episodeList.episodesList, meta: anilistResponse.data.data})
+ } catch (err) {
+  console.log('Error from Search Anime Route', err);
+ }
+});
 
 app.use((req, res) => {
  res.status(404).json({

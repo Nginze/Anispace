@@ -1,11 +1,20 @@
 import { useNavigate } from "react-router-dom";
 
-const AnimePreviewCard = ({ imgUrl, title, otherNames, episodeId, episodeNum }) => {
+const AnimePreviewCard = ({
+  imgUrl,
+  title,
+  otherNames,
+  episodeId,
+  episodeNum,
+}) => {
   const navigate = useNavigate();
   const handleCardClick = () => {
-    const regexId = title.replace(/[^a-zA-Z0-9,;\-.!? ]/g, '').toLowerCase().replace(/\s/g, "-")
-    console.log(regexId)
-    navigate(episodeId ? `/watch/${episodeId}` : `watch/${regexId}-episode-1`);
+    if (episodeId) {
+      navigate(`/watch/${episodeId}`);
+    }
+    else{
+      navigate(`anime?name=${title}`)
+    }
   };
   return (
     <div onClick={handleCardClick} className="cursor-pointer ">

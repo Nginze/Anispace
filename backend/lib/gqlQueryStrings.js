@@ -85,3 +85,27 @@ export const PopularAnimeQuery = `
 		}
 	}
 `;
+
+export const searchAnimeQuery = `
+	query($search: String) {
+		Media (search : $search, type: ANIME, sort:POPULARITY_DESC) {
+			title {
+				romaji
+				english
+				userPreferred
+			}
+			season
+			seasonYear
+			type
+			bannerImage
+			coverImage{
+				extraLarge
+				large
+			}
+			description
+			episodes
+			status
+			genres
+		}
+	}
+`;

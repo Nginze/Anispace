@@ -9,9 +9,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #171716;
+  color: #eee;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.anime-info-banner:before{
+  background: linear-gradient(177deg,#161616 0,rgba(22,22,22,.7) 100%);
 }
