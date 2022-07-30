@@ -25,7 +25,7 @@ import {
  PopularAnimeQuery,
  searchAnimeQuery,
 } from './gqlQueryStrings.js';
-import { animeIdParser } from './utils.js';
+import { animeIdParser, dubParser } from './utils.js';
 
 const port = process.env.PORT || 5000;
 const baseUrl = 'https://graphql.anilist.co';
@@ -197,10 +197,14 @@ app.get('/anime-details/:id', async (req, res) => {
 app.get('/fembed/watch/:id', async (req, res) => {
  try {
   const id = req.params.id;
-
+  const dubId = dubParser(req.params.id);
   const data = await scrapeFembed({ id: id });
-
-  res.status(200).json(data);
+  const dataDub = await scrapeFembed({ id: dubId });
+  if (!dataDub.error) {
+   res.status(200).json({ data, dataDub });
+  } else {
+   res.status(200).json(data);
+  }
  } catch (err) {
   res.status(500).json({
    status: 500,
@@ -213,10 +217,14 @@ app.get('/fembed/watch/:id', async (req, res) => {
 app.get('/vidcdn/watch/:id', async (req, res) => {
  try {
   const id = req.params.id;
-
+  const dubId = dubParser(req.params.id);
   const data = await scrapeMP4({ id: id });
-
-  res.status(200).json(data);
+  const dataDub = await scrapeMP4({ id: dubId });
+  if (!dataDub.error) {
+   res.status(200).json({ data, dataDub });
+  } else {
+   res.status(200).json(data);
+  }
  } catch (err) {
   res.status(500).json({
    status: 500,
@@ -229,10 +237,14 @@ app.get('/vidcdn/watch/:id', async (req, res) => {
 app.get('/streamsb/watch/:id', async (req, res) => {
  try {
   const id = req.params.id;
-
+  const dubId = dubParser(req.params.id);
   const data = await scrapeStreamSB({ id: id });
-
-  res.status(200).json(data);
+  const dataDub = await scrapeStreamSB({ id: dubId });
+  if (!dataDub.error) {
+   res.status(200).json({ data, dataDub });
+  } else {
+   res.status(200).json(data);
+  }
  } catch (err) {
   res.status(500).json({
    status: 500,
@@ -417,15 +429,14 @@ app.get('/animeMeta/:animeId', async (req, res) => {
      epLists: secondScrapeResponse.episodesList,
      meta: anilistResponse.data.data,
     });
-   }
-   else{
-    const searchResults= await scrapeSearch({keyw: req.params.animeId});
+   } else {
+    const searchResults = await scrapeSearch({ keyw: req.params.animeId });
     const foundAnimeId = searchResults[0].animeId;
-    const finalScrapeResponse = await scrapeAnimeDetails({id: foundAnimeId})
+    const finalScrapeResponse = await scrapeAnimeDetails({ id: foundAnimeId });
     res.json({
-        epLists: finalScrapeResponse.episodesList,
-        meta: anilistResponse.data.data
-    })
+     epLists: finalScrapeResponse.episodesList,
+     meta: anilistResponse.data.data,
+    });
    }
   }
  } catch (err) {

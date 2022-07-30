@@ -13,3 +13,8 @@ export const animeIdParser = animeTitle => {
     .split(" ")
     .join("-");
 };
+export const dubParser = episodeId => {
+    const [animeId, episodeNumber] = episodeId.split("-episode-");
+    const episodeIdDub = `${animeId}-dub-episode-${episodeNumber}`
+    return episodeIdDub
+}

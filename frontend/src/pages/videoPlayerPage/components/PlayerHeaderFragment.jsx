@@ -1,6 +1,6 @@
 const PlayerHeaderFragment = ({ title, episodeNumber }) => {
   return (
-    <div className="text-left p-2 my-2 text-sm opacity-60">
+    <div className="text-left p-2 my-2 text-lg text-bold">
       <span>Episode {episodeNumber} | </span>
       <span>{title}</span>
     </div>

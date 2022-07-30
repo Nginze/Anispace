@@ -5,15 +5,35 @@ const useGetVideoSrc = episodeId => {
   const GogoClient = axios.create({
     baseURL: "http://localhost:5000",
   });
-  const getVideoSrcList = async ({ episodeId }) => {
+  const getVideoSrcListVidcdn = async ({ episodeId }) => {
     const { data } = await GogoClient.get(`/vidcdn/watch/${episodeId}`);
     return data;
   };
+  const getVideoSrcListStreamSb = async ({ episodeId }) => {
+    const { data } = await GogoClient.get(`/streamsb/watch/${episodeId}`);
+    return data;
+  };
 
-  const { data: videoSrcList } = useQuery(["videSrcList", episodeId], () =>
-    getVideoSrcList({ episodeId })
+  const getVideoSrcListFembed = async ({ episodeId }) => {
+    const { data } = await GogoClient.get(`/fembed/watch/${episodeId}`);
+    return data;
+  };
+  const { data: vidSrcListStreamSb } = useQuery(
+    ["vidSrcListStreamSb", episodeId],
+    () => getVideoSrcListStreamSb({ episodeId })
+    
   );
-  return { videoSrcList };
+  const { data: videoSrcListVidcdn } = useQuery(
+    ["videSrcListvidcdn", episodeId],
+    () => getVideoSrcListVidcdn({ episodeId })
+  );
+
+  const { data: vidSrcListFembed } = useQuery(
+    ["vidSrcListFembed", episodeId],
+    () => getVideoSrcListFembed({ episodeId })
+    
+  );
+  return { vidSrcListStreamSb, videoSrcListVidcdn, vidSrcListFembed };
 };
 
 export default useGetVideoSrc;
