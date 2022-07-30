@@ -8,7 +8,7 @@ const SectionSlider = ({ dataList, headerText, type }) => {
       <span>{headerText}</span>
       <div className="">
         {!dataList && <h1>loading...</h1>}
-        <Swiper spaceBetween={10} slidesPerView={6}>
+        <Swiper spaceBetween={40} slidesPerView={7}>
           {type == "RECENT" && dataList
             ? dataList.map(episode => (
                 <SwiperSlide>

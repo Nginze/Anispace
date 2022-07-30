@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
+import {animeIdParser} from "../utils"
 const AnimePreviewCard = ({
   imgUrl,
   title,
@@ -13,20 +13,20 @@ const AnimePreviewCard = ({
       navigate(`/watch/${episodeId}`);
     }
     else{
-      navigate(`/anime/${title}`)
+      navigate(`/anime/${animeIdParser(title)}`)
     }
   };
   return (
     <div onClick={handleCardClick} className="cursor-pointer ">
       <div className="w-full ">
-        <div className="h-60">
+        <div className="w-40 h-56 pb-2">
           <img className="w-full h-full object-cover" src={imgUrl} />
         </div>
-        <div className="max-w-full">
-          <span className="block max-w-full whitespace-nowrap overflow-hidden text-ellipsis text-sm">
+        <div className="max-w-full text-[13px] text-center font-medium">
+          <span className="block max-w-full whitespace-nowrap overflow-hidden text-ellipsis text-sm leading-5">
             {title}
           </span>
-          {episodeNum && <span>Episode {episodeNum}</span>}
+          {episodeNum && <span className="leading-6 font-normal text-[#888]">Episode {episodeNum}</span>}
         </div>
       </div>
     </div>

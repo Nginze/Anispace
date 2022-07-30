@@ -370,7 +370,7 @@ app.get('/favourite', async (req, res) => {
   console.log('Error from favourite Anime Route', err);
  }
 });
-app.get('/animeMeta', async (req, res) => {
+app.get('/animeMeta/:animeId', async (req, res) => {
  let response = {};
  try {
   const anilistResponse = await axios({
@@ -383,13 +383,11 @@ app.get('/animeMeta', async (req, res) => {
    data: {
     query: searchAnimeQuery,
     variables: {
-     search: req.query.q,
+     search: req.params.animeId,
     },
    },
   })
-  const gogoResponse = await scrapeSearch({keyw: encodeURIComponent(req.query.q.trim())})
-  const firstSearchResultId = gogoResponse[0].animeId
-  const episodeList = await scrapeAnimeDetails({id: firstSearchResultId})
+  const episodeList = await scrapeAnimeDetails({id: req.params.animeId})
   res.json({epList: episodeList.episodesList, meta: anilistResponse.data.data})
  } catch (err) {
   console.log('Error from Search Anime Route', err);

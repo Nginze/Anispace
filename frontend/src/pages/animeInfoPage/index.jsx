@@ -4,13 +4,8 @@ import useAnimeInfo from "./hooks/useAnimeInfo";
 
 const Index = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
   const {anId} = useParams()
-  const searchQuery = anId 
-    .replace(":", "")
-    .replace("(", "")
-    .replace(")", "");
-  const { animeInfo } = useAnimeInfo(searchQuery.toLowerCase());
+  const { animeInfo } = useAnimeInfo(anId);
   const loadFirstEpisode = () => {
     const episodeId = animeInfo.epList[0].episodeId;
     navigate(`/watch/${episodeId}`);
@@ -23,13 +18,13 @@ const Index = () => {
           <div className="w-full h-80">
             <img
               className="w-full h-full object-cover"
-              src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21-tXMN3Y20PIL9.jpg"
+              src={animeInfo?.meta?.Media?.coverImage?.large}
             />
           </div>
           <div className="text-left p-3 flex flex-col ">
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Type</span>
-              <span className="font-semibold">TV Series</span>
+              <span className="font-semibold">{animeInfo?.meta?.Media?.type}</span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Studio</span>
@@ -49,19 +44,14 @@ const Index = () => {
           </div>
         </div>
         <div className="w-3/4 ml-7 mt-[103px] text-left text-[#bbb] z-30">
-          <div className="h-10 w-64 mb-3">
-            <span className="text-3xl  ">One Piece</span>
+          <div className="h-10 w-full mb-3">
+            <span className="text-3xl ">{animeInfo?.meta?.Media?.title.romaji}</span>
           </div>
           <div className="flex mb-4">
-            <span className="mr-10 cursor-pointer">Action</span>
-            <span className="mr-10 cursor-pointer">Adventure</span>
-            <span className="mr-10 cursor-pointer">shounen</span>
+            {animeInfo?.meta?.Media?.genres?.map(genre =>  <span className="mr-10 cursor-pointer">{genre}</span>)}
           </div>
           <div className="pt-3 text-white opacity-50 ">
-            In the world of Remnant, humans and Faunus—human-animal
-            hybrids—carry on their everyday lives despite the omnipresent threat
-            of the monstrous Grimm. Dedicated Huntsmen and Huntresses battle
-            Grimm with both customized weapons
+            {animeInfo?.meta?.Media?.description}
           </div>
         </div>
       </div>
