@@ -26,13 +26,17 @@ const Index = () => {
               <span className="text-[13px] text-[#666]">Type</span>
               <span className="font-semibold">{animeInfo?.meta?.Media?.type}</span>
             </span>
+              <span className="flex flex-col text-sm mb-2">
+              <span className="text-[13px] text-[#666]">Episodes</span>
+              <span className="font-semibold">{animeInfo?.meta?.Media?.episodes}</span>
+            </span>
             <span className="flex flex-col text-sm mb-2">
-              <span className="text-[13px] text-[#666]">Studio</span>
-              <span className="font-semibold">Shaft</span>
+              <span className="text-[13px] text-[#666]">Status</span>
+              <span className="font-semibold">{animeInfo?.meta?.Media?.status}</span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Release Date</span>
-              <span className="font-semibold">Currently Airing</span>
+              <span className="font-semibold">{animeInfo?.meta?.Media?.seasonYear}</span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Language</span>

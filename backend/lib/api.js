@@ -25,6 +25,7 @@ import {
  PopularAnimeQuery,
  searchAnimeQuery,
 } from './gqlQueryStrings.js';
+import { animeIdParser } from './utils.js';
 
 const port = process.env.PORT || 5000;
 const baseUrl = 'https://graphql.anilist.co';
@@ -386,9 +387,37 @@ app.get('/animeMeta/:animeId', async (req, res) => {
      search: req.params.animeId,
     },
    },
-  })
-  const episodeList = await scrapeAnimeDetails({id: req.params.animeId})
-  res.json({epList: episodeList.episodesList, meta: anilistResponse.data.data})
+  });
+  if (!anilistResponse) {
+   res.status(404).json({ message: 'anime not found' });
+  }
+  const englishTitleParsed = animeIdParser(anilistResponse.data.data.Media.title.english);
+  const englishParsedTv = englishTitleParsed + '-tv';
+  const romajiParsedTv = req.params.animeId + '-tv';
+  const episodeListEnglish = await scrapeAnimeDetails({ id: englishTitleParsed });
+  const episodeListRomaji = await scrapeAnimeDetails({ id: req.params.animeId });
+  const firstScrapeResponse = await Promise.all([
+   episodeListEnglish,
+   episodeListRomaji,
+  ]).then((fsr) => (fsr[0].episodes > 0 ? fsr[0] : fsr[1]));
+
+  if (!firstScrapeResponse.error) {
+   res.json({
+    epLists: firstScrapeResponse.episodesList,
+    meta: anilistResponse.data.data,
+   });
+  } else {
+   const episodeListEnglishTv = await scrapeAnimeDetails({ id: englishParsedTv });
+   const episodeListRomajiTv = await scrapeAnimeDetails({ id: romajiParsedTv });
+   const secondScrapeResponse = await Promise.all([
+    episodeListEnglishTv,
+    episodeListRomajiTv,
+   ]).then((ssr) => (ssr[0].episodes > 0 ? ssr[0] : ssr[1]));
+   res.json({
+    epLists: secondScrapeResponse.episodesList,
+    meta: anilistResponse.data.data,
+   });
+  }
  } catch (err) {
   console.log('Error from Search Anime Route', err);
  }

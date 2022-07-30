@@ -51,6 +51,7 @@ export const favouritesAnimeQuery = `
 				}
 				description
 				episodes
+
 			}
 		}
 	}
@@ -106,6 +107,8 @@ export const searchAnimeQuery = `
 			episodes
 			status
 			genres
+			averageScore
+			duration
 		}
 	}
 `;
