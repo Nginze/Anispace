@@ -2,6 +2,7 @@ import { Hls, Player, Video } from "@vime/react";
 import VideoPlayerControls from "./VideoPlayerControls";
 
 const AnimePlayer = ({ episodeSrc, episodePoster }) => {
+  console.log(episodeSrc)
   return (
     <Player>
       {episodeSrc && episodeSrc.includes("m3u8") ? (

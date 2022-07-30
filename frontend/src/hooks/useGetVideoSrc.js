@@ -20,17 +20,26 @@ const useGetVideoSrc = episodeId => {
   };
   const { data: vidSrcListStreamSb } = useQuery(
     ["vidSrcListStreamSb", episodeId],
-    () => getVideoSrcListStreamSb({ episodeId })
+    () => getVideoSrcListStreamSb({ episodeId }),{
+      refetchOnMount: false,
+      refetchOnReconnect: false
+    }
     
   );
   const { data: vidSrcListVidcdn } = useQuery(
     ["videSrcListvidcdn", episodeId],
-    () => getVideoSrcListVidcdn({ episodeId })
+    () => getVideoSrcListVidcdn({ episodeId }),{
+      refetchOnMount: false,
+      refetchOnReconnect: false
+    }
   );
 
   const { data: vidSrcListFembed } = useQuery(
     ["vidSrcListFembed", episodeId],
-    () => getVideoSrcListFembed({ episodeId })
+    () => getVideoSrcListFembed({ episodeId }),{
+      refetchOnMount: false,
+      refetchOnReconnect: false
+    }
     
   );
   return { vidSrcListStreamSb, vidSrcListVidcdn, vidSrcListFembed };
