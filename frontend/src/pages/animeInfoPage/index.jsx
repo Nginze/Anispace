@@ -1,10 +1,11 @@
+import EpisodeGrid from "pages/videoPlayerPage/components/EpisodeGrid";
 import React from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useAnimeInfo from "./hooks/useAnimeInfo";
-
+import parse from 'html-react-parser'
 const Index = () => {
   const navigate = useNavigate();
-  const {anId} = useParams()
+  const { anId } = useParams();
   const { animeInfo } = useAnimeInfo(anId);
   const loadFirstEpisode = () => {
     const episodeId = animeInfo.epList[0].episodeId;
@@ -24,19 +25,27 @@ const Index = () => {
           <div className="text-left p-3 flex flex-col ">
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Type</span>
-              <span className="font-semibold">{animeInfo?.meta?.Media?.type}</span>
+              <span className="font-semibold">
+                {animeInfo?.meta?.Media?.type}
+              </span>
             </span>
-              <span className="flex flex-col text-sm mb-2">
+            <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Episodes</span>
-              <span className="font-semibold">{animeInfo?.meta?.Media?.episodes}</span>
+              <span className="font-semibold">
+                {animeInfo?.meta?.Media?.episodes}
+              </span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Status</span>
-              <span className="font-semibold">{animeInfo?.meta?.Media?.status}</span>
+              <span className="font-semibold">
+                {animeInfo?.meta?.Media?.status}
+              </span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Release Date</span>
-              <span className="font-semibold">{animeInfo?.meta?.Media?.seasonYear}</span>
+              <span className="font-semibold">
+                {animeInfo?.meta?.Media?.seasonYear}
+              </span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Language</span>
@@ -49,13 +58,22 @@ const Index = () => {
         </div>
         <div className="w-3/4 ml-7 mt-[103px] text-left text-[#bbb] z-30">
           <div className="h-10 w-full mb-3">
-            <span className="text-3xl ">{animeInfo?.meta?.Media?.title.romaji}</span>
+            <span className="text-3xl ">
+              {animeInfo?.meta?.Media?.title.romaji}
+            </span>
           </div>
           <div className="flex mb-4">
-            {animeInfo?.meta?.Media?.genres?.map(genre =>  <span className="mr-10 cursor-pointer">{genre}</span>)}
+            {animeInfo?.meta?.Media?.genres?.map(genre => (
+              <span className="mr-10 cursor-pointer">{genre}</span>
+            ))}
           </div>
-          <div className="pt-3 text-white opacity-50 ">
-            {animeInfo?.meta?.Media?.description}
+          <div>
+            {animeInfo && <div className="pt-3 text-white opacity-50 ">
+              {parse(animeInfo?.meta?.Media?.description)}
+            </div>}
+            <div className="text-center">
+              <EpisodeGrid episodeList={animeInfo?.epLists}/>
+            </div>
           </div>
         </div>
       </div>

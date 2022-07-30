@@ -9,14 +9,14 @@ const Index = () => {
   const { epId } = useParams();
   const {videoSrcList} = useGetVideoSrc(epId)
   const animeId = epId.replace("-episode-", "").replace(/\d+$/, "")
-  const {videoMeta} = useGetVideoMeta(animeId)
+  // const {videoMeta} = useGetVideoMeta(animeId)
   return (
     <div>
       <div className="w-3/4 m-auto">
         <div className="w-full m-auto">
-          <AnimePlayer episodeSrc={videoSrcList?.sources[0].file}/>
+          <AnimePlayer episodeSrc={videoSrcList?.sources[0]?.file}/>
           <ServerOptions/>
-          <EpisodeGrid episodeList = {videoMeta?.episodesList}/>
+          {/* <EpisodeGrid episodeList = {videoMeta?.episodesList}/> */}
         </div>
       </div>
     </div>
