@@ -1,15 +1,19 @@
 import EpisodeGrid from "pages/videoPlayerPage/components/EpisodeGrid";
-import React from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import useAnimeInfo from "./hooks/useAnimeInfo";
-import parse from 'html-react-parser'
+import parse from "html-react-parser";
 const Index = () => {
   const navigate = useNavigate();
   const { anId } = useParams();
   const { animeInfo } = useAnimeInfo(anId);
+  const [showMoreDesc, setShowMoreDesc] = useState(false);
   const loadFirstEpisode = () => {
     const episodeId = animeInfo.epList[0].episodeId;
     navigate(`/watch/${episodeId}`);
+  };
+  const showMoreDescription = () => {
+    setShowMoreDesc(!showMoreDesc);
   };
   return (
     <div className="w-full flex-col ">
@@ -25,38 +29,36 @@ const Index = () => {
           <div className="text-left p-3 flex flex-col ">
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Type</span>
-              <span className="font-semibold">
+              <span className="font-semibold text-[#999]">
                 {animeInfo?.meta?.Media?.type}
               </span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Episodes</span>
-              <span className="font-semibold">
+              <span className="font-semibold text-[#999]">
                 {animeInfo?.meta?.Media?.episodes}
               </span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Status</span>
-              <span className="font-semibold">
+              <span className="font-semibold text-[#999]">
                 {animeInfo?.meta?.Media?.status}
               </span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Release Date</span>
-              <span className="font-semibold">
+              <span className="font-semibold text-[#999]">
                 {animeInfo?.meta?.Media?.seasonYear}
               </span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Language</span>
-              <span className="font-semibold">Subbed</span>
+              <span className="font-semibold text-[#999]">Subbed</span>
             </span>
-            <div>
-              <button onClick={loadFirstEpisode}>Watch Now</button>
-            </div>
           </div>
         </div>
         <div className="w-3/4 ml-7 mt-[103px] text-left text-[#bbb] z-30">
+         
           <div className="h-10 w-full mb-3">
             <span className="text-3xl ">
               {animeInfo?.meta?.Media?.title.romaji}
@@ -68,11 +70,23 @@ const Index = () => {
             ))}
           </div>
           <div>
-            {animeInfo && <div className="pt-3 text-white opacity-50 ">
-              {parse(animeInfo?.meta?.Media?.description)}
-            </div>}
-            <div className="text-center">
-              <EpisodeGrid episodeList={animeInfo?.epLists}/>
+            {animeInfo && (
+              <div className="pt-5 text-white opacity-50 ">
+                {showMoreDesc
+                  ? parse(animeInfo?.meta?.Media?.description)
+                  : parse(
+                      animeInfo?.meta?.Media?.description.substring(0, 300)
+                    ) + "..."}
+                <button
+                  onClick={showMoreDescription}
+                  className="ml-1 text-white font-bold opacity-100"
+                >
+                  {showMoreDesc ? "less" : "more"}
+                </button>
+              </div>
+            )}
+            <div className="text-center py-6">
+              <EpisodeGrid episodeList={animeInfo?.epLists} />
             </div>
           </div>
         </div>

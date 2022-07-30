@@ -5,6 +5,8 @@ import useGetVideoSrc from "hooks/useGetVideoSrc";
 import EpisodeGrid from "./components/EpisodeGrid";
 import useGetVideoMeta from "./hooks/useGetVideoMeta";
 import ServerOptions from "./components/ServerOptions";
+import PlayerHeaderFragment from "./components/PlayerHeaderFragment";
+import NextPrevControls from "./components/NextPrevControls";
 const Index = () => {
   const { epId } = useParams();
   const {videoSrcList} = useGetVideoSrc(epId)
@@ -14,7 +16,9 @@ const Index = () => {
     <div>
       <div className="w-3/4 m-auto">
         <div className="w-full m-auto">
+          <PlayerHeaderFragment title={"One Piece"}/>
           <AnimePlayer episodeSrc={videoSrcList?.sources[0]?.file}/>
+          <NextPrevControls/>
           <ServerOptions/>
           {/* <EpisodeGrid episodeList = {videoMeta?.episodesList}/> */}
         </div>
