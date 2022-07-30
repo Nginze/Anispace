@@ -13,7 +13,7 @@ const AnimePreviewCard = ({
       navigate(`/watch/${episodeId}`);
     }
     else{
-      navigate(`anime?name=${title}`)
+      navigate(`/anime/${title}`)
     }
   };
   return (

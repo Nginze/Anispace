@@ -6,7 +6,7 @@ const EpisodeGrid = ({ episodeList }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   return (
-    <div class="py-4 w-full max-h-40 overflow-y-auto flex flex-wrap  items-start">
+    <div class="scrollable py-4 w-full max-h-40 overflow-y-auto flex flex-wrap  items-start">
       {episodeList?.map(episode => {
         return (
           <div

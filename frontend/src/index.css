@@ -12,6 +12,14 @@ body {
   background-color: #171716;
   color: #eee;
 }
+body::-webkit-scrollbar, .scrollable::-webkit-scrollbar {
+    width: 10px;
+    height: 100%;
+    background-color: transparent;
+}
+body::-webkit-scrollbar-thumb, .scrollable::-webkit-scrollbar-thumb{
+    background: rgba(255,255,255,.05);
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -20,3 +28,4 @@ code {
 .anime-info-banner:before{
   background: linear-gradient(177deg,#161616 0,rgba(22,22,22,.7) 100%);
 }
+

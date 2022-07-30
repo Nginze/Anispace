@@ -1,12 +1,12 @@
 import React from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import useAnimeInfo from "./hooks/useAnimeInfo";
 
 const Index = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const searchQuery = searchParams
-    .get("name")
+  const {anId} = useParams()
+  const searchQuery = anId 
     .replace(":", "")
     .replace("(", "")
     .replace(")", "");
