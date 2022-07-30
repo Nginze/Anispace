@@ -388,10 +388,11 @@ app.get('/animeMeta/:animeId', async (req, res) => {
     },
    },
   });
-  if (!anilistResponse) {
-   res.status(404).json({ message: 'anime not found' });
-  }
+//   if (!anilistResponse) {
+//    res.status(404).json({ message: 'anime not found' });
+//   }
   const englishTitleParsed = animeIdParser(anilistResponse.data.data.Media.title.english);
+  console.log(englishTitleParsed)
   const englishParsedTv = englishTitleParsed + '-tv';
   const romajiParsedTv = req.params.animeId + '-tv';
   const episodeListEnglish = await scrapeAnimeDetails({ id: englishTitleParsed });
@@ -399,8 +400,7 @@ app.get('/animeMeta/:animeId', async (req, res) => {
   const firstScrapeResponse = await Promise.all([
    episodeListEnglish,
    episodeListRomaji,
-  ]).then((fsr) => (fsr[0].episodes > 0 ? fsr[0] : fsr[1]));
-
+  ]).then((fsr) => (!fsr[0].error ? fsr[0] : fsr[1]));
   if (!firstScrapeResponse.error) {
    res.json({
     epLists: firstScrapeResponse.episodesList,
@@ -412,7 +412,7 @@ app.get('/animeMeta/:animeId', async (req, res) => {
    const secondScrapeResponse = await Promise.all([
     episodeListEnglishTv,
     episodeListRomajiTv,
-   ]).then((ssr) => (ssr[0].episodes > 0 ? ssr[0] : ssr[1]));
+   ]).then((ssr) => (!ssr[0].error ? ssr[0] : ssr[1]));
    res.json({
     epLists: secondScrapeResponse.episodesList,
     meta: anilistResponse.data.data,

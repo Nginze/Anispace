@@ -464,7 +464,7 @@ export const scrapeAnimeDetails = async({ id }) => {
             episodesList: epList,
         };
     } catch (err) {
-        console.log(err);
+        
         return { error: err };
     }
 };
