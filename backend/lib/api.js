@@ -203,7 +203,7 @@ app.get('/fembed/watch/:id', async (req, res) => {
   if (!dataDub.error) {
    res.status(200).json({ data, dataDub });
   } else {
-   res.status(200).json(data);
+   res.status(200).json({data});
   }
  } catch (err) {
   res.status(500).json({
@@ -223,7 +223,7 @@ app.get('/vidcdn/watch/:id', async (req, res) => {
   if (!dataDub.error) {
    res.status(200).json({ data, dataDub });
   } else {
-   res.status(200).json(data);
+   res.status(200).json({data});
   }
  } catch (err) {
   res.status(500).json({
@@ -243,7 +243,7 @@ app.get('/streamsb/watch/:id', async (req, res) => {
   if (!dataDub.error) {
    res.status(200).json({ data, dataDub });
   } else {
-   res.status(200).json(data);
+   res.status(200).json({data});
   }
  } catch (err) {
   res.status(500).json({
