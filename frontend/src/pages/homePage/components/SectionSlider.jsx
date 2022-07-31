@@ -1,10 +1,10 @@
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
 import AnimePreviewCard from "./AnimePreviewCard";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { Ring } from "@uiball/loaders";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 
 const SectionSlider = ({ dataList, headerText, type }) => {
@@ -23,8 +23,12 @@ const SectionSlider = ({ dataList, headerText, type }) => {
         </div>
       </div>
 
-      <div className="">
-        {!dataList && <h1>loading...</h1>}
+      <div className="w-full flex justify-center ">
+        {!dataList && (
+          <div className="w-full m-auto flex justify-center">
+            <Ring size={40} lineWeight={5} speed={2} color="white" />
+          </div>
+        )}
         <Swiper className="mt-4" spaceBetween={40} slidesPerView={7}>
           {type == "RECENT" && dataList
             ? dataList.map(episode => (

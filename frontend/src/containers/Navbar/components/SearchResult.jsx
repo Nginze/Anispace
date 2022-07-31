@@ -13,7 +13,7 @@ const SearchResult = ({ animeId, animeImg, title, status }) => {
           <img src={animeImg} />
         </div>
         <div className="flex flex-col items-start pl-2">
-          <span className="mb-1 text-sm leading-[1.3em] font-normal text-white">
+          <span className="mb-1 text-sm leading-[1.3em] font-normal text-white text-left  ">
             {title}
           </span>
           <span className="flex items-center">
