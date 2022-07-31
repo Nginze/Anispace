@@ -19,7 +19,7 @@ const AnimePreviewCard = ({
   return (
     <div onClick={handleCardClick} className="cursor-pointer ">
       <div className="w-full ">
-        <div className="w-40 h-56 pb-2">
+        <div className="w-40 h-56 mb-2 bg-[#666]">
           <img className="w-full h-full object-cover" src={imgUrl} />
         </div>
         <div className="max-w-full text-[13px] text-center font-medium">
