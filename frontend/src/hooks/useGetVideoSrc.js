@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { GogoClient } from "services/GogoClient";
 
 const useGetVideoSrc = episodeId => {
-  const GogoClient = axios.create({
-    baseURL: "http://localhost:5000",
-  });
+
   const getVideoSrcListVidcdn = async ({ episodeId }) => {
     const { data } = await GogoClient.get(`/vidcdn/watch/${episodeId}`);
     return data;

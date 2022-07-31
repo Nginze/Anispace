@@ -7,11 +7,11 @@ const AnimePlayer = ({ episodeSrc, episodePoster }) => {
     <Player>
       {episodeSrc && episodeSrc.includes("m3u8") ? (
         <Hls version="latest" poster={episodePoster} key={episodeSrc}>
-          <source data-src={episodeSrc} type="application/x-mpegURL" />
+          <source src={episodeSrc} type="application/x-mpegURL" />
         </Hls>
       ) : (
         <Video poster={episodePoster} key={episodeSrc}>
-          <source data-src={episodeSrc} type="video/mp4" />
+          <source src={episodeSrc} type="video/mp4" />
         </Video>
       )}
       <VideoPlayerControls />

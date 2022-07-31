@@ -33,9 +33,9 @@ const Index = () => {
           <NextPrevControls />
           <ServerOptions
             subLinks={{
-              vidcdn: vidSrcListVidcdn?.data?.sources[0]?.file,
-              streamsb: vidSrcListStreamSb?.data.data[0]?.file,
-              fembed: vidSrcListFembed?.data.data[0]?.file,
+              vidcdn: vidSrcListVidcdn?.data?.error ? undefined : vidSrcListVidcdn?.data?.sources[0]?.file,
+              streamsb:vidSrcListStreamSb?.data?.error ? undefined : vidSrcListStreamSb?.data?.data[0]?.file,
+              fembed: vidSrcListFembed?.data?.error ? undefined : vidSrcListFembed?.data?.data[0]?.file,
             }}
             dubLinks={{
               vidcdn: vidSrcListVidcdn?.dataDub?.sources[0]?.file,

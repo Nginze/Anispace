@@ -1,10 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { GogoClient } from "services/GogoClient";
 
 const useGetVideoMeta = (animeId) => {
-  const GogoClient = axios.create({
-    baseURL: "http://localhost:5000",
-  });
+  
   const getVideoMeta = async ({animeId}) => {
     const {data} = await GogoClient.get(`/anime-details/${animeId}`)
     return data

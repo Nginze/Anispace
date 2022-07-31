@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { GogoClient } from "services/GogoClient";
 
-const useHomepage = () => {
-  const GogoClient = axios.create({
-    baseURL: "http://localhost:5000",
-  });
+const useHomepage = () => { 
   const getRecentEpisodes = async () => {
     const { data } = await GogoClient.get(`/recent-release`);
     return data;
