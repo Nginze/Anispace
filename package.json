@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-css-loaders": "^0.0.6",
     "react-icons": "^4.4.0"
   }
 }

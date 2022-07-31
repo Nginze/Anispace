@@ -6,8 +6,8 @@ const useSearch = (searchQuery) => {
         const {data} = await GogoClient.get(`/search?keyw=${searchQuery}`)
         return data
     }
-    const {data: searchResults} = useQuery(["searchResults", searchQuery], () => getSearchResults({searchQuery}))
-    return {searchResults}
+    const {data: searchResults, isLoading: searchIsLoading} = useQuery(["searchResults", searchQuery], () => getSearchResults({searchQuery}))
+    return {searchResults, searchIsLoading}
 };
 
 export default useSearch ;
