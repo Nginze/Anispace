@@ -1,4 +1,5 @@
 import { RiLoginBoxLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import Search from "./components/Search";
 const Index = () => {
   return (
@@ -7,8 +8,8 @@ const Index = () => {
         <div className="w-14 h-14 mr-5 flex items-center">
           <img className="w-full h-full" src="/logo.png" />
         </div>
-        <span className="mr-5">Browse</span>
-        <span className="mr-5">Random</span>
+        <Link><span className="mr-5">Browse</span></Link>
+        <Link><span className="mr-5">Random</span></Link>
         <span>Genre</span>
       </div>
       <div className="flex items-center">

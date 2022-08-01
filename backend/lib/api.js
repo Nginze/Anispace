@@ -25,7 +25,7 @@ import {
  PopularAnimeQuery,
  searchAnimeQuery,
 } from './gqlQueryStrings.js';
-import { animeIdParser, dubParser } from './utils.js';
+import { anilistParser, animeIdParser, dubParser } from './utils.js';
 
 const port = process.env.PORT || 5000;
 const baseUrl = 'https://graphql.anilist.co';
@@ -396,13 +396,10 @@ app.get('/animeMeta/:animeId', async (req, res) => {
    data: {
     query: searchAnimeQuery,
     variables: {
-     search: req.params.animeId,
+     search: anilistParser(req.params.animeId),
     },
    },
   });
-  //   if (!anilistResponse) {
-  //    res.status(404).json({ message: 'anime not found' });
-  //   }
   const englishTitleParsed = animeIdParser(anilistResponse.data.data.Media.title.english);
   const englishParsedTv = englishTitleParsed + '-tv';
   const romajiParsedTv = req.params.animeId + '-tv';
@@ -431,7 +428,7 @@ app.get('/animeMeta/:animeId', async (req, res) => {
     });
    } else {
     const searchResults = await scrapeSearch({ keyw: req.params.animeId });
-    const foundAnimeId = searchResults[0].animeId;
+    const foundAnimeId = searchResults[0]?.animeId;
     const finalScrapeResponse = await scrapeAnimeDetails({ id: foundAnimeId });
     res.json({
      epLists: finalScrapeResponse.episodesList,

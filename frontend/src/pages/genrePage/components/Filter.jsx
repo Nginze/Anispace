@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const Filter = () => {
+const Filter = ({setGenre}) => {
   const availableGenres = [
     "action",
     "adventure",
@@ -53,7 +53,7 @@ const Filter = () => {
   ];
   const navigate = useNavigate();
   const handleSelection = e => {
-    navigate(`/genre/${e.target.value}`);
+    setGenre(e.target.value);
   };
   return (
     <div className="w-full flex flex-col items-start">
