@@ -3,7 +3,7 @@ import { GogoClient } from "services/GogoClient";
 
 const useGenreFilter = (genre) => {
   const getGenre = async ({ genre }) => {
-    const { data } = await GogoClient.get(`/genre/${genre}`);
+    const { data } = await GogoClient.get(`api/g/genre/${genre}`);
     return data
   };
   const { data: animeList, isLoading: listLoading } = useQuery(

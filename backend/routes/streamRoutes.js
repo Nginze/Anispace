@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { scrapeFembed, scrapeStreamSB } from '../lib/anime_parser.js';
+import { scrapeFembed, scrapeMP4, scrapeStreamSB } from '../lib/anime_parser.js';
 import { dubParser } from '../lib/utils.js';
 const router = Router();
 

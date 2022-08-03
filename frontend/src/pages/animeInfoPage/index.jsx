@@ -75,7 +75,7 @@ const Index = () => {
               <div className="pt-5 text-white opacity-50 ">
                 {showMoreDesc
                   ? parse(animeInfo?.synopsis)
-                  : parse(
+                  : animeInfo?.synopsis && parse(
                       animeInfo?.synopsis?.substring(0, 300)
                     ) + "..."}
                 <button
