@@ -24,32 +24,33 @@ const Index = () => {
           <div className="w-full h-80">
             <img
               className="w-full h-full object-cover"
-              src={animeInfo?.meta?.Media?.coverImage?.large}
+              src={animeInfo?.animeImg}
+              alt="anime banner"
             />
           </div>
           <div className="text-left p-3 flex flex-col ">
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Type</span>
               <span className="font-semibold text-[#999]">
-                {animeInfo?.meta?.Media?.type}
+                {animeInfo.type}
               </span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Episodes</span>
               <span className="font-semibold text-[#999]">
-                {animeInfo?.meta?.Media?.episodes}
+                {animeInfo?.totalEpisodes}
               </span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Status</span>
               <span className="font-semibold text-[#999]">
-                {animeInfo?.meta?.Media?.status}
+                {animeInfo?.status}
               </span>
             </span>
             <span className="flex flex-col text-sm mb-2">
               <span className="text-[13px] text-[#666]">Release Date</span>
               <span className="font-semibold text-[#999]">
-                {animeInfo?.meta?.Media?.seasonYear}
+                {animeInfo?.releasedDate}
               </span>
             </span>
             <span className="flex flex-col text-sm mb-2">
@@ -61,11 +62,11 @@ const Index = () => {
         <div className="w-3/4 ml-7 mt-[103px] text-left text-[#bbb] z-30">
           <div className="h-10 w-full mb-3">
             <span className="text-3xl ">
-              {animeInfo?.meta?.Media?.title.romaji}
+              {animeInfo?.animeTitle}
             </span>
           </div>
           <div className="flex mb-4">
-            {animeInfo?.meta?.Media?.genres?.map(genre => (
+            {animeInfo?.genres?.map(genre => (
               <span className="mr-10 cursor-pointer">{genre}</span>
             ))}
           </div>
@@ -73,9 +74,9 @@ const Index = () => {
             {animeInfo && (
               <div className="pt-5 text-white opacity-50 ">
                 {showMoreDesc
-                  ? parse(animeInfo?.meta?.Media?.description)
+                  ? parse(animeInfo?.synopsis)
                   : parse(
-                      animeInfo?.meta?.Media?.description.substring(0, 300)
+                      animeInfo?.synopsis?.substring(0, 300)
                     ) + "..."}
                 <button
                   onClick={showMoreDescription}
@@ -86,7 +87,7 @@ const Index = () => {
               </div>
             )}
             <div className="text-center py-6">
-              <EpisodeGrid episodeList={animeInfo?.epLists} />
+              <EpisodeGrid episodeList={animeInfo?.episodesList} />
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const GogoClient = axios.create({
-  baseURL: "https://gurenapi.herokuapp.com/",
+  baseURL: "http://localhost:5000",
 });
 
 export { GogoClient };

@@ -5,7 +5,7 @@ import { GogoClient } from "services/GogoClient";
 const useGetVideoMeta = (animeId) => {
   
   const getVideoMeta = async ({animeId}) => {
-    const {data} = await GogoClient.get(`/anime-details/${animeId}`)
+    const {data} = await GogoClient.get(`api/details/anime-details/${animeId}`)
     return data
   }
   const {data: videoMeta} = useQuery(["VideoData", animeId], () => getVideoMeta({animeId}))

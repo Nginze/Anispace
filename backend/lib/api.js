@@ -1,12 +1,12 @@
 import cors from 'cors';
 import express from 'express';
-import {router as categoryRoutes}  from '../routes/categoryRoutes.js'
-import {router as detailsRoutes} from '../routes/detailsRoutes.js'
-import {router as downloadRoutes} from '../routes/downloadRoutes.js'
-import {router as genreRoutes} from '../routes/genreRoutes.js'
-import {router as searchRoutes} from '../routes/searchRoutes.js'
-import {router as streamRoutes} from '../routes/streamRoutes.js'
-import {router as threadRoutes} from '../routes/threadRoutes.js'
+import { router as categoryRoutes } from '../routes/categoryRoutes.js';
+import { router as detailsRoutes } from '../routes/detailsRoutes.js';
+import { router as downloadRoutes } from '../routes/downloadRoutes.js';
+import { router as genreRoutes } from '../routes/genreRoutes.js';
+import { router as searchRoutes } from '../routes/searchRoutes.js';
+import { router as streamRoutes } from '../routes/streamRoutes.js';
+import { router as threadRoutes } from '../routes/threadRoutes.js';
 const app = express();
 const port = process.env.PORT || 5000;
 const baseUrl = 'https://graphql.anilist.co';
@@ -18,7 +18,13 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(express.json());
-
+app.use('/api/category', categoryRoutes);
+app.use('/api/details', detailsRoutes);
+app.use('/api/d', downloadRoutes);
+app.use('/api/g', genreRoutes);
+app.use('/api/s', searchRoutes);
+app.use('/api/stream', streamRoutes);
+app.use('/api/t', threadRoutes);
 app.get('/', (req, res) => {
  res.status(200).json('Welcome to GogoAnime API!');
 });

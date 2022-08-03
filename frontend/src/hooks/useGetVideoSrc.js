@@ -4,16 +4,16 @@ import { GogoClient } from "services/GogoClient";
 const useGetVideoSrc = episodeId => {
 
   const getVideoSrcListVidcdn = async ({ episodeId }) => {
-    const { data } = await GogoClient.get(`/vidcdn/watch/${episodeId}`);
+    const { data } = await GogoClient.get(`/api/stream/vidcdn/watch/${episodeId}`);
     return data;
   };
   const getVideoSrcListStreamSb = async ({ episodeId }) => {
-    const { data } = await GogoClient.get(`/streamsb/watch/${episodeId}`);
+    const { data } = await GogoClient.get(`/api/stream/streamsb/watch/${episodeId}`);
     return data;
   };
 
   const getVideoSrcListFembed = async ({ episodeId }) => {
-    const { data } = await GogoClient.get(`/fembed/watch/${episodeId}`);
+    const { data } = await GogoClient.get(`/api/stream/fembed/watch/${episodeId}`);
     return data;
   };
   const { data: vidSrcListStreamSb } = useQuery(

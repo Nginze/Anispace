@@ -30,7 +30,7 @@ const SectionSlider = ({ dataList, headerText, type }) => {
           </div>
         )}
         <Swiper className="mt-4" spaceBetween={40} slidesPerView={7}>
-          {type == "RECENT" && dataList
+          {type === "RECENT" && dataList
             ? dataList.map(episode => (
                 <SwiperSlide>
                   <AnimePreviewCard
@@ -43,24 +43,24 @@ const SectionSlider = ({ dataList, headerText, type }) => {
                 </SwiperSlide>
               ))
             : null}
-          {type == "TRENDING" && dataList
+          {type === "TRENDING" && dataList
             ? dataList.map(anime => (
                 <SwiperSlide>
                   <AnimePreviewCard
-                    key={anime.title.userPreferred}
-                    imgUrl={anime.coverImage.large}
-                    title={anime.title.userPreferred}
+                    key={anime.animeId}
+                    imgUrl={anime.animeImg}
+                    title={anime.animeTitle}
                   />
                 </SwiperSlide>
               ))
             : null}
-          {type == "FAVOURITE" && dataList
+          {type === "FAVOURITE" && dataList
             ? dataList.map(anime => (
                 <SwiperSlide>
-                  <AnimePreviewCard
-                    key={anime.title.userPreferred}
-                    imgUrl={anime.coverImage.large}
-                    title={anime.title.userPreferred}
+                <AnimePreviewCard
+                    key={anime.animeId}
+                    imgUrl={anime.animeImg}
+                    title={anime.animeTitle}
                   />
                 </SwiperSlide>
               ))
