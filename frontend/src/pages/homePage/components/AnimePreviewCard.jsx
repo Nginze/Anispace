@@ -6,6 +6,8 @@ const AnimePreviewCard = ({
   otherNames,
   episodeId,
   episodeNum,
+  status,
+  latestEpisode
 }) => {
   const navigate = useNavigate();
   const handleCardClick = () => {
@@ -27,6 +29,8 @@ const AnimePreviewCard = ({
             {title}
           </span>
           {episodeNum && <span className="leading-6 font-normal text-[#888]">Episode {episodeNum}</span>}
+          {!episodeNum && status && <span className="leading-6 font-normal text-[#888]"> Released {status}</span>}
+           {!episodeNum && latestEpisode && <span className="leading-6 font-normal text-[#888]"> {latestEpisode}/ ?</span>}
         </div>
       </div>
     </div>

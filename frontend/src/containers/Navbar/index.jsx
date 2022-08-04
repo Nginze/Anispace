@@ -15,10 +15,30 @@ const Index = () => {
         <div className="dropdown flex flex-col relative" to="/browse">
           <span className="mr-5 cursor-pointer">Browse</span>
           <div className="dropdown-content flex flex-col text-left absolute z-50 rounded-md bg-[#331e93] top-6  w-28 px-5 py-2">
-            <span className="mb-3 font-semibold cursor-pointer">Popular</span>
-            <span className="mb-3 font-semibold cursor-pointer">Recent</span>
-            <span className="mb-3 font-semibold cursor-pointer">Movies</span>
-            <span className="mb-3 font-semibold cursor-pointer">Trending</span>
+            <Link
+              className="mb-3 font-semibold cursor-pointer"
+              to="/browse/popular"
+            >
+              <span>Popular</span>
+            </Link>
+            <Link
+              className="mb-3 font-semibold cursor-pointer"
+              to="/browse/recent-release"
+            >
+              <span>Recent</span>
+            </Link>
+            <Link
+              className="mb-3 font-semibold cursor-pointer"
+              to="/browse/top-airing"
+            >
+              <span>Trending</span>
+            </Link>
+            <Link
+              className="mb-3 font-semibold cursor-pointer"
+              to="/browse/movies"
+            >
+              <span>Movies</span>
+            </Link>
           </div>
         </div>
         <Link to="/genre">

@@ -50,6 +50,7 @@ const SectionSlider = ({ dataList, headerText, type }) => {
                     key={anime.animeId}
                     imgUrl={anime.animeImg}
                     title={anime.animeTitle}
+                    latestEpisode={anime.latestEp}
                   />
                 </SwiperSlide>
               ))
@@ -61,6 +62,7 @@ const SectionSlider = ({ dataList, headerText, type }) => {
                     key={anime.animeId}
                     imgUrl={anime.animeImg}
                     title={anime.animeTitle}
+                    status={anime.releasedDate}
                   />
                 </SwiperSlide>
               ))
