@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import { useEffect } from "react";
 import AnimePlayer from "./components/AnimePlayer";
 import { useParams } from "react-router-dom";
 import useGetVideoSrc from "hooks/useGetVideoSrc";
@@ -12,14 +12,14 @@ import useVideoStore from "store/useVideoStore";
 const Index = () => {
   const { epId } = useParams();
   const currentSrc = useVideoStore(state => state.currentSrc);
-  const setSrc = useVideoStore(state => state.setSrc)
+  const setSrc = useVideoStore(state => state.setSrc);
   const { vidSrcListVidcdn, vidSrcListFembed, vidSrcListStreamSb } =
     useGetVideoSrc(epId);
   const animeId = epId.replace("-episode-", "").replace(/\d+$/, "");
-  const { title, episodeNumber } = reduceEpisodeId(epId);
+  const { animeId: aId, episodeNumber } = reduceEpisodeId(epId);
   const { videoMeta } = useGetVideoMeta(animeId);
   useEffect(() => {
-   setSrc(vidSrcListVidcdn?.data?.sources[0]?.file)
+    setSrc(vidSrcListVidcdn?.data?.sources[0]?.file);
   }, [vidSrcListVidcdn]);
   return (
     <div>
@@ -30,12 +30,18 @@ const Index = () => {
             episodeNumber={episodeNumber}
           />
           <AnimePlayer episodeSrc={currentSrc} />
-          <NextPrevControls />
+          <NextPrevControls aId={aId} episodeNumber={episodeNumber} totalEpisodes = {videoMeta?.totalEpisodes}/>
           <ServerOptions
             subLinks={{
-              vidcdn: vidSrcListVidcdn?.data?.error ? undefined : vidSrcListVidcdn?.data?.sources[0]?.file,
-              streamsb:vidSrcListStreamSb?.data?.error ? undefined : vidSrcListStreamSb?.data?.data[0]?.file,
-              fembed: vidSrcListFembed?.data?.error ? undefined : vidSrcListFembed?.data?.data[0]?.file,
+              vidcdn: vidSrcListVidcdn?.data?.error
+                ? undefined
+                : vidSrcListVidcdn?.data?.sources[0]?.file,
+              streamsb: vidSrcListStreamSb?.data?.error
+                ? undefined
+                : vidSrcListStreamSb?.data?.data[0]?.file,
+              fembed: vidSrcListFembed?.data?.error
+                ? undefined
+                : vidSrcListFembed?.data?.data[0]?.file,
             }}
             dubLinks={{
               vidcdn: vidSrcListVidcdn?.dataDub?.sources[0]?.file,
@@ -43,7 +49,10 @@ const Index = () => {
               fembed: vidSrcListFembed?.dataDub?.data[0]?.file,
             }}
           />
-          <EpisodeGrid episodeList={videoMeta?.episodesList} />
+          <EpisodeGrid
+            episodeList={videoMeta?.episodesList}
+            videoMeta={videoMeta}
+          />
         </div>
       </div>
     </div>
