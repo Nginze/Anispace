@@ -24,7 +24,7 @@ const useGetVideoSrc = episodeId => {
     }
     
   );
-  const { data: vidSrcListVidcdn } = useQuery(
+  const { data: vidSrcListVidcdn, isLoading: defaultSrcIsLoading} = useQuery(
     ["videSrcListvidcdn", episodeId],
     () => getVideoSrcListVidcdn({ episodeId }),{
       refetchOnMount: false,
@@ -40,7 +40,7 @@ const useGetVideoSrc = episodeId => {
     }
     
   );
-  return { vidSrcListStreamSb, vidSrcListVidcdn, vidSrcListFembed };
+  return { vidSrcListStreamSb, vidSrcListVidcdn, vidSrcListFembed, defaultSrcIsLoading};
 };
 
 export default useGetVideoSrc;

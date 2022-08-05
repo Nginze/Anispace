@@ -13,14 +13,17 @@ const Index = () => {
   const { epId } = useParams();
   const currentSrc = useVideoStore(state => state.currentSrc);
   const setSrc = useVideoStore(state => state.setSrc);
-  const { vidSrcListVidcdn, vidSrcListFembed, vidSrcListStreamSb } =
+  const { vidSrcListVidcdn, vidSrcListFembed, vidSrcListStreamSb, defaultSrcIsLoading } =
     useGetVideoSrc(epId);
   const animeId = epId.replace("-episode-", "").replace(/\d+$/, "");
   const { animeId: aId, episodeNumber } = reduceEpisodeId(epId);
   const { videoMeta } = useGetVideoMeta(animeId);
-  useEffect(() => {
+  if(defaultSrcIsLoading){
+    return <h1>Loading...</h1>
+  }
+  else{
     setSrc(vidSrcListVidcdn?.data?.sources[0]?.file);
-  }, [vidSrcListVidcdn]);
+  }
   return (
     <div>
       <div className="w-3/4 m-auto">
