@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 const NextPrevControls = ({ aId, episodeNumber, totalEpisodes }) => {
@@ -18,14 +19,14 @@ const NextPrevControls = ({ aId, episodeNumber, totalEpisodes }) => {
       <div className="flex items-center">
         <button
           onClick={loadPrevEpisode}
-          className="mr-9 font-light flex items-center"
+          className= {`mr-9 font-light flex items-center ${episodeNumber >= 2 ? 'text-[#ffffff]' : 'text-[#ffffff63]'}`}
         >
           <GoChevronLeft />
           Prev
         </button>
         <button
           onClick={loadNextEpisode}
-          className="mr-9 font-light flex items-center"
+          className={`mr-9 font-light flex items-center ${episodeNumber < totalEpisodes ? 'text-[#ffffff]' : 'text-[#ffffff63]'}`}
         >
           Next
           <GoChevronRight />

@@ -8,10 +8,10 @@ const EpisodeGrid = ({ episodeList, videoMeta }) => {
   const queryClient = useQueryClient();
   return (
     <>
-      <div className="text-left text-xl text-[#babab8] font-semibold flex items-center">
+      {videoMeta && <div className="text-left text-xl text-[#babab8] font-semibold flex items-center">
         <span className="mr-2"><FiFolder/></span>
         <span>{videoMeta?.animeTitle}</span>
-      </div>
+      </div>}
       <div class="scrollable py-4 w-full max-h-40 overflow-y-auto flex flex-wrap  items-start">
         {episodeList?.map(episode => {
           return (
