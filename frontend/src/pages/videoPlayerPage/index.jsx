@@ -7,21 +7,32 @@ import useGetVideoMeta from "./hooks/useGetVideoMeta";
 import ServerOptions from "./components/ServerOptions";
 import PlayerHeaderFragment from "./components/PlayerHeaderFragment";
 import NextPrevControls from "./components/NextPrevControls";
+import { Ring } from '@uiball/loaders'
 import { reduceEpisodeId } from "./utils";
 import useVideoStore from "store/useVideoStore";
 const Index = () => {
   const { epId } = useParams();
   const currentSrc = useVideoStore(state => state.currentSrc);
   const setSrc = useVideoStore(state => state.setSrc);
-  const { vidSrcListVidcdn, vidSrcListFembed, vidSrcListStreamSb, defaultSrcIsLoading } =
-    useGetVideoSrc(epId);
+  const {
+    vidSrcListVidcdn,
+    vidSrcListFembed,
+    vidSrcListStreamSb,
+    defaultSrcIsLoading,
+  } = useGetVideoSrc(epId);
   const animeId = epId.replace("-episode-", "").replace(/\d+$/, "");
   const { animeId: aId, episodeNumber } = reduceEpisodeId(epId);
   const { videoMeta } = useGetVideoMeta(animeId);
-  if(defaultSrcIsLoading){
-    return <h1>Loading...</h1>
-  }
-  else{
+  if (defaultSrcIsLoading) {
+    return (
+      <>
+        <div className="flex flex-col items-center mt-52">
+          <img className="w-24 h-24" src="/logo.png" />
+          <span className="flex items-center"><Ring color="white" size={15}/><span className="ml-2">Fetching Streaming Links ...</span></span>
+        </div>
+      </>
+    );
+  } else {
     setSrc(vidSrcListVidcdn?.data?.sources[0]?.file);
   }
   return (
@@ -33,7 +44,11 @@ const Index = () => {
             episodeNumber={episodeNumber}
           />
           <AnimePlayer episodeSrc={currentSrc} />
-          <NextPrevControls aId={aId} episodeNumber={episodeNumber} totalEpisodes = {videoMeta?.totalEpisodes}/>
+          <NextPrevControls
+            aId={aId}
+            episodeNumber={episodeNumber}
+            totalEpisodes={videoMeta?.totalEpisodes}
+          />
           <ServerOptions
             subLinks={{
               vidcdn: vidSrcListVidcdn?.data?.error

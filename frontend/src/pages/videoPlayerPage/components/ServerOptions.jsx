@@ -23,7 +23,7 @@ const ServerOptions = ({ subLinks, dubLinks }) => {
               {subLinks?.vidcdn && (
                 <button
                   onClick={() => changeServer(subLinks.vidcdn)}
-                  className="font-semibold text-sm px-3 py-2 mr-2 bg-[#343434] rounded-[3px]"
+                  className="font-semibold text-sm px-3 py-2 mr-2 bg-[#343434] rounded-[3px] hover:bg-[#523cb395]"
                 >
                   Vidcloud
                 </button>
@@ -31,7 +31,7 @@ const ServerOptions = ({ subLinks, dubLinks }) => {
               {subLinks?.streamsb && (
                 <button
                   onClick={() => changeServer(subLinks.streamsb)}
-                  className="font-semibold text-sm px-3 py-2 mr-2 bg-[#343434] rounded-[3px]"
+                  className="font-semibold text-sm px-3 py-2 mr-2 bg-[#343434] rounded-[3px] hover:bg-[#523cb395]"
                 >
                   StreamSB
                 </button>
@@ -39,7 +39,7 @@ const ServerOptions = ({ subLinks, dubLinks }) => {
               {subLinks?.fembed && (
                 <button
                   onClick={() => changeServer(subLinks.fembed)}
-                  className="font-semibold text-sm px-3 py-2 mr-2 bg-[#343434] rounded-[3px]"
+                  className="font-semibold text-sm px-3 py-2 mr-2 bg-[#343434] rounded-[3px] hover:bg-[#523cb395]"
                 >
                   Fembed
                 </button>
@@ -58,7 +58,7 @@ const ServerOptions = ({ subLinks, dubLinks }) => {
               {dubLinks?.vidcdn && (
                 <button
                   onClick={() => changeServer(dubLinks.vidcdn)}
-                  className="font-semibold px-3 text-sm py-2 mr-2 bg-[#343434] rounded-[3px]"
+                  className="font-semibold px-3 text-sm py-2 mr-2 bg-[#343434] rounded-[3px] hover:bg-[#523cb395]"
                 >
                   Vidcloud
                 </button>
@@ -66,7 +66,7 @@ const ServerOptions = ({ subLinks, dubLinks }) => {
               {dubLinks?.streamsb && (
                 <button
                   onClick={() => changeServer(dubLinks.streamsb)}
-                  className="font-semibold px-3 text-sm py-2 mr-2 bg-[#343434] rounded-[3px]"
+                  className="font-semibold px-3 text-sm py-2 mr-2 bg-[#343434] rounded-[3px] hover:bg-[#523cb395]"
                 >
                   StreamSB
                 </button>
@@ -74,7 +74,7 @@ const ServerOptions = ({ subLinks, dubLinks }) => {
               {dubLinks?.fembed && (
                 <button
                   onClick={() => changeServer(dubLinks.fembed)}
-                  className="font-semibold px-3 text-sm py-2 mr-2 bg-[#343434] rounded-[3px]"
+                  className="font-semibold px-3 text-sm py-2 mr-2 bg-[#343434] rounded-[3px] hover:bg-[#523cb395]"
                 >
                   Fembed
                 </button>
