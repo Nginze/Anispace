@@ -10,7 +10,7 @@ import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 const SectionSlider = ({ dataList, headerText, type }) => {
   const slideNext = () => {};
   return (
-    <div className="flex-col text-left w-3/4 m-auto mb-5">
+    <div className="flex-col text-left w-4/5 m-auto mb-5">
       <div className="flex items-center justify-between">
         <span>{headerText}</span>
         <div className="flex items-center">
@@ -31,7 +31,7 @@ const SectionSlider = ({ dataList, headerText, type }) => {
         )}
         <Swiper className="mt-4" spaceBetween={40} slidesPerView={7}>
           {type === "RECENT" && dataList
-            ? dataList.map(episode => (
+            ? dataList?.map(episode => (
                 <SwiperSlide>
                   <AnimePreviewCard
                     key={episode.animeId}
@@ -44,7 +44,7 @@ const SectionSlider = ({ dataList, headerText, type }) => {
               ))
             : null}
           {type === "TRENDING" && dataList
-            ? dataList.map(anime => (
+            ? dataList?.map(anime => (
                 <SwiperSlide>
                   <AnimePreviewCard
                     key={anime.animeId}
@@ -56,7 +56,7 @@ const SectionSlider = ({ dataList, headerText, type }) => {
               ))
             : null}
           {type === "FAVOURITE" && dataList
-            ? dataList.map(anime => (
+            ? dataList?.map(anime => (
                 <SwiperSlide>
                 <AnimePreviewCard
                     key={anime.animeId}

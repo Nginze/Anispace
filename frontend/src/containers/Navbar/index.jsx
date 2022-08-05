@@ -4,7 +4,7 @@ import Search from "./components/Search";
 const Index = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex items-center justify-between w-3/4 m-auto mb-5 mt-3">
+    <div className="flex items-center justify-between w-4/5 m-auto mb-5 mt-3">
       <div className="flex items-center justify-evenly">
         <div
           onClick={() => navigate("/")}
