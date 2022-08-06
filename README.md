@@ -14,7 +14,7 @@ The site functions by leveraging scraped content from Gogoanime
 
 ## Demo
 
-![Alt Text](https://res.cloudinary.com/chakra-me/image/upload/v1659752626/guren_jimyvt.gif)
+![Demo](https://res.cloudinary.com/chakra-me/image/upload/v1659752626/guren_jimyvt.gif)
 
 ## Features
 
