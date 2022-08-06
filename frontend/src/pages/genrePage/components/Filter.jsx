@@ -60,7 +60,7 @@ const Filter = ({setGenre}) => {
       <span className="text-left mb-3">Genres</span>
       <div className="flex flex-wrap" >
         {availableGenres.map(genre => (
-          <div key={genre} className=" text-[12px] flex items-center mr-2 border border-[rgb(67,68,69)] rounded-[10px] bg-[#29292b] px-[8px] py-[4px] my-[4px]">
+          <div key={genre} className=" text-[12px] flex items-center mr-2 border border-[rgb(67,68,69)] rounded-[10px] bg-[#29292b] px-[8px] py-[4px] my-[4px] hover:bg-[#454547]">
             <button onClick={handleSelection} value={genre}>
              {genre.charAt(0).toUpperCase() + genre.slice(1)} 
             </button>

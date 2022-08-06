@@ -4,7 +4,9 @@ import { Ring } from "@uiball/loaders";
 import { useNavigate, useParams } from "react-router-dom";
 import useAnimeInfo from "./hooks/useAnimeInfo";
 import parse from "html-react-parser";
+import useRefreshVideoSrc from "hooks/useRefreshVideoSrc";
 const Index = () => {
+  useRefreshVideoSrc()
   const navigate = useNavigate();
   const { anId } = useParams();
   const { animeInfo } = useAnimeInfo(anId);

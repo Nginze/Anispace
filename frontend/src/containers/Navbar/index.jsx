@@ -14,27 +14,27 @@ const Index = () => {
         </div>
         <div className="dropdown flex flex-col relative" to="/browse">
           <span className="mr-5 cursor-pointer">Browse</span>
-          <div className="dropdown-content flex flex-col text-left absolute z-50 rounded-md bg-[#331e93] top-6  w-28 px-5 py-2">
+          <div className="dropdown-content flex flex-col text-left absolute z-50 rounded-md bg-[#331e93] top-6  w-28 ">
             <Link
-              className="mb-3 font-semibold cursor-pointer"
+              className=" w-full font-semibold cursor-pointer hover:bg-[#230e8c] hover:rounded-t-md px-5 py-2"
               to="/browse/popular"
             >
               <span>Popular</span>
             </Link>
             <Link
-              className="mb-3 font-semibold cursor-pointer"
+              className="font-semibold cursor-pointer hover:bg-[#230e8c] px-5 py-2"
               to="/browse/recent-release"
             >
               <span>Recent</span>
             </Link>
             <Link
-              className="mb-3 font-semibold cursor-pointer"
+              className=" font-semibold cursor-pointer hover:bg-[#230e8c] px-5 py-2"
               to="/browse/top-airing"
             >
               <span>Trending</span>
             </Link>
             <Link
-              className="mb-3 font-semibold cursor-pointer"
+              className="font-semibold cursor-pointer  hover:bg-[#230e8c] hover:rounded-b-md px-5 py-2"
               to="/browse/movies"
             >
               <span>Movies</span>

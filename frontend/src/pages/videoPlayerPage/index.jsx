@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+
 import AnimePlayer from "./components/AnimePlayer";
 import { useParams } from "react-router-dom";
 import useGetVideoSrc from "hooks/useGetVideoSrc";
@@ -7,9 +7,10 @@ import useGetVideoMeta from "./hooks/useGetVideoMeta";
 import ServerOptions from "./components/ServerOptions";
 import PlayerHeaderFragment from "./components/PlayerHeaderFragment";
 import NextPrevControls from "./components/NextPrevControls";
-import { Ring } from '@uiball/loaders'
+import { Ring } from "@uiball/loaders";
 import { reduceEpisodeId } from "./utils";
 import useVideoStore from "store/useVideoStore";
+import { useEffect } from "react";
 const Index = () => {
   const { epId } = useParams();
   const currentSrc = useVideoStore(state => state.currentSrc);
@@ -23,18 +24,19 @@ const Index = () => {
   const animeId = epId.replace("-episode-", "").replace(/\d+$/, "");
   const { animeId: aId, episodeNumber } = reduceEpisodeId(epId);
   const { videoMeta } = useGetVideoMeta(animeId);
-  if (defaultSrcIsLoading) {
-    return (
-      <>
-        <div className="flex flex-col items-center mt-52">
-          <img className="w-24 h-24" src="/logo.png" />
-          <span className="flex items-center"><Ring color="white" size={15}/><span className="ml-2">Fetching Streaming Links ...</span></span>
-        </div>
-      </>
-    );
-  } else {
-    setSrc(vidSrcListVidcdn?.data?.sources[0]?.file);
-  }
+  useEffect(() => {
+  setSrc(vidSrcListVidcdn?.data?.sources[0]?.file);
+  }, [defaultSrcIsLoading]);
+  // if (!defaultSrcIsLoading) {
+    
+  //   // return (
+  //   //   <>
+  //   //     <div className="flex flex-col items-center mt-52">
+  //   //       <span className="flex items-center"><Ring color="white" size={15}/><span className="ml-2">Fetching Streaming Links ...</span></span>
+  //   //     </div>
+  //   //   </>
+  //   // );
+  // } 
   return (
     <div>
       <div className="w-3/4 m-auto">

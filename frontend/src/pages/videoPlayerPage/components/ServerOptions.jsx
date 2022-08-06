@@ -4,6 +4,7 @@ import useVideoStore from "store/useVideoStore";
 
 const ServerOptions = ({ subLinks, dubLinks }) => {
   const setSrc = useVideoStore(state => state.setSrc);
+
   const changeServer = src => {
     setSrc(src);
   };

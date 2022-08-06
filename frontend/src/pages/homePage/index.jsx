@@ -1,8 +1,10 @@
+import useRefreshVideoSrc from "hooks/useRefreshVideoSrc";
 import React from "react";
 import SectionSlider from "./components/SectionSlider";
 import useHomepage from "./hooks/useHomepage";
 
 const Index = () => {
+  useRefreshVideoSrc()
   const { recentEpisodesList, trendingAnimeList, favouriteAnimeList } =
     useHomepage();
   return (

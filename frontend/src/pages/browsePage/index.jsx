@@ -2,8 +2,9 @@ import React from "react";
 import AnimeBox from "containers/AnimeBox";
 import { useParams } from "react-router-dom";
 import useBrowse from "./hooks/useBrowse";
-
+import useRefreshVideoSrc from "hooks/useRefreshVideoSrc";
 const Index = () => {
+  useRefreshVideoSrc()
   const { category } = useParams();
   const { browseCategory, isLoading } = useBrowse(category);
   return (

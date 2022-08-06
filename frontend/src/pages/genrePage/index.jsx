@@ -2,7 +2,9 @@ import Filter from "./components/Filter"
 import AnimeBox from "containers/AnimeBox"
 import { useState } from "react"
 import useGenreFilter from "./hooks/useGenreFilter"
+import useRefreshVideoSrc from "hooks/useRefreshVideoSrc"
 const Index = () => {
+  useRefreshVideoSrc()
   const [selectedGenre, setGenre] = useState("action")
   const {listLoading, animeList} = useGenreFilter(selectedGenre)
   return (
