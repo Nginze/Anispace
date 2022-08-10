@@ -10,12 +10,6 @@ Guren - The open-source anime streaming service made with React Js, TailwindCSS,
 The site functions by leveraging scraped content from Gogoanime
 
 
-
-
-## Demo
-
-![Demo](https://res.cloudinary.com/chakra-me/image/upload/v1659752626/guren_jimyvt.gif)
-
 ## Features
 
 - Recent Anime Episodes
