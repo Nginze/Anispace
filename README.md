@@ -12,7 +12,7 @@ The site functions by leveraging scraped content from Gogoanime
 
 ## Features
 
-- Recent Anime Episodes
+- Recent Anime Episodes in HD
 - Popular Anime Collections
 - Trending Anime Collections
 - Anime Statistics/Category
